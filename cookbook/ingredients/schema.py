@@ -110,6 +110,15 @@ def test8_resolver(parent, info):
         test8_objects = [{'test8': 'test8_1'}, {'test8': 'test8_2'}]
     )
 
+class test9Type(graphene.ObjectType):
+    test9_val1 = graphene.String()
+    test9_val2 = graphene.Int()
+
+def test9_resolver(parent, info):
+    return test9Type(
+        test9_val1 = 'test9_val',
+        test9_val2 = 9999
+    )
 
 class Query(graphene.ObjectType):
     
@@ -155,3 +164,7 @@ class Query(graphene.ObjectType):
         resolver=test8_resolver
     )
 
+    test9 = graphene.Field(
+        test9Type,
+        resolver=test9_resolver
+    )
